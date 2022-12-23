@@ -16,6 +16,17 @@ class doubly_linked_list:
             self.head.prev = NewNode
         self.head = NewNode
 
+    #Define insert method to insert element
+    def insert(self, prev_node, NewVal):
+        if prev_node is None:
+            return
+        NewNode = Node(NewVal)
+        NewNode.next = prev_node.next
+        prev_node.next = NewNode
+        NewNode.prev = prev_node
+        if NewNode.next is not None:
+            NewNode.next.prev = NewNode
+
     #Print the Doubly Linked List
     def listprint(self, node):
         while(node is not None):
@@ -27,4 +38,5 @@ dllist = doubly_linked_list()
 dllist.push(12)
 dllist.push(8)
 dllist.push(62)
+dllist.insert(dllist.head.next, 13)
 dllist.listprint(dllist.head)
